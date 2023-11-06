@@ -1,19 +1,27 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target)
     {
-        int a[]=new int[2];
-        int b[]={-1,-1};
-        for(int i=0;i<numbers.length;i++)
+       
+        int a[]={-1,-1};
+        int f=0;
+        int l=numbers.length-1;
+       while(f<l)
+       {
+          if(numbers[f]+numbers[l]==target)
+          {
+              a[0]=f+1;
+              a[1]=l+1;
+              return a;
+          }
+        else if(numbers[f]+numbers[l]<target)
         {
-         for(int j=1+i;j<numbers.length;j++)
-        { 
-             if(numbers[i]+numbers[j]==target)
-             {
-                 a[0]=i+1;
-                 a[1]=j+1;
-                 return a;
-             }
+            f++;
+        }
+        else
+        {
+            l--;
         }
     }
-        return b;
+        return a;
+        
 }}
