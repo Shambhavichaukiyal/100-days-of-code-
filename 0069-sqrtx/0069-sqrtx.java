@@ -3,10 +3,6 @@ class Solution {
         if (x == 0) {
             return 0;
         }
-        if (x < 0) {
-            return -1;
-        }
-
         int i;
         for (i = 1; i <= x/i ; i++) {
         }
