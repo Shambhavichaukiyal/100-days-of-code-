@@ -8,7 +8,7 @@ class Solution {
         }
 
         int i;
-        for (i = 1; i <= x / i; i++) {
+        for (i = 1; i <= x/i ; i++) {
         }
         
         return i - 1;
