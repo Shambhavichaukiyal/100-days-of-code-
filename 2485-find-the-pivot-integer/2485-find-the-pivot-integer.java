@@ -1,19 +1,17 @@
-class Solution {
+public class Solution {
     public int pivotInteger(int n) {
-        int sum = 0, lsum = 0, rsum = 0;
-        for(int i = 1;i<=n;i++){
-            sum += i;
+        int sum = (n * (n + 1)) / 2;
+        int r = 0;
 
-        }
-        for(int i = 1;i<=n;i++)
-        {
-            lsum += i;
-            rsum = sum - lsum;
-            if(lsum == rsum + i){
-                return i;
+        while (n >= 0) {
+            if (sum == r+n) {
+                return n;
+            } else {
+                sum = sum - n;
+                r = r + n;
+                n--;
             }
         }
         return -1;
     }
 }
-    
