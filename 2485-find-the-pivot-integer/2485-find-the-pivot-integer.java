@@ -3,7 +3,7 @@ public class Solution {
         int sum = (n * (n + 1)) / 2;
         int r = 0;
 
-        while (n >= 0) {
+        while (n >0) {
             if (sum == r+n) {
                 return n;
             } else {
