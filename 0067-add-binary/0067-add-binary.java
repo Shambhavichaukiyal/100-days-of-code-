@@ -1,25 +1,8 @@
+import java.math.BigInteger;
 
-
-public class Solution{
-
-	static String addBinary(String A, String B)
-	{ 
-		int i = A.length()-1;
-		int j = B.length()-1;
-		int carry = 0;
-		int sum = 0;
-		StringBuilder result = new StringBuilder();
-		while(i>=0 || j>=0 || carry == 1){
-			sum = carry;
-			if(i>=0) sum = sum+A.charAt(i)-'0';
-			if(j>=0) sum = sum+B.charAt(j)-'0';
-			result.append((char)(sum%2+'0'));
-			carry = sum/2;
-			i--;
-			j--;
-		}
-		return result.reverse().toString();
-	}}
-
-
-	
+public class Solution {
+    public static String addBinary(String a, String b) {
+        BigInteger ss = new BigInteger(a, 2).add(new BigInteger(b, 2));
+        return ss.toString(2);
+    }
+}
