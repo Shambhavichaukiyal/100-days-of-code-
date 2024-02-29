@@ -1,22 +1,22 @@
-class Solution {
-    public List<String> generateParenthesis(int n) {
-     
-        List<String> result = new ArrayList<>();
-        generate(result, "", 0, 0, n);
-        return result;
+class Solution 
+{
+    public List<String> generateParenthesis(int n) 
+    {
+        List<String> result =new ArrayList<String>();
+        generate(n,"",0, 0,result);
+            return result;
     }
-
-    public void generate(List<String> result, String ans, int ob, int cb, int n) {
-        if (ans.length() == 2 * n) {
+ public void generate(int n, String ans, int ob, int cb, List<String> result) {
+        if (n * 2 == ans.length()) {
             result.add(ans);
             return;
         }
         if (ob < n) {
-            generate(result, ans + '(', ob + 1, cb, n);
+            generate(n, ans + '(', ob + 1, cb, result);
         }
-        if (cb < ob) {
-            generate(result, ans + ')', ob, cb + 1, n);
+        if (ob > cb) {
+            generate(n, ans + ')', ob, cb + 1, result);
         }
     }
-}    
-
+}
+        
