@@ -1,18 +1,16 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        Arrays.sort(nums); // Sort the input array to maintain order
         List<List<Integer>> result = new ArrayList<>();
-        generate(nums, 0, new ArrayList<>(), result);
+        generate(nums, result, new ArrayList<>(), 0);
         return result;
     }
 
-    private void generate(int[] nums, int index, List<Integer> current, List<List<Integer>> result) {
-        result.add(new ArrayList<>(current)); 
-
+    public void generate(int[] nums, List<List<Integer>> result, List<Integer> current, int index) {
+        result.add(new ArrayList<>(current)); // Add the current subset to the result
         for (int i = index; i < nums.length; i++) {
-            current.add(nums[i]); 
-            generate(nums, i + 1, current, result); 
-            current.remove(current.size() - 1); 
+            current.add(nums[i]);
+            generate(nums, result, current, i + 1); // Pass i + 1 instead of index + 1
+            current.remove(current.size() - 1);
         }
     }
 }
