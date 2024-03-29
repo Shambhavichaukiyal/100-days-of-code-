@@ -2,26 +2,31 @@ class Solution
 {
     public List<String> letterCombinations(String digits) 
     {
-       List<String> result = new ArrayList<>();
-        if (digits == null || digits.length() == 0) {
+    String keypad[]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> result = new ArrayList<>();
+        if(digits.length()==0 || digits== null)
+        {
             return result;
         }
-        String[] keypad = {
-            "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
-        };
-        generate("", digits, keypad, result);
+        generate(digits,result,keypad,"");
         return result;
     }
-        
-   public void generate(String current, String digits, String[] keypad, List<String> result) {
-        if (digits.length() == 0) {
-            result.add(current);
+    public void generate(String digits,List<String> result,String keypad[],String ans)
+    {
+        if(digits.length()==0)
+        {
+            result.add(ans);
             return;
         }
-        char digit = digits.charAt(0);
-        String letters = keypad[digit - '0'];
-        for (int i = 0; i < letters.length(); i++) {
-            char letter = letters.charAt(i);
-            generate(current + letter, digits.substring(1), keypad, result);
+        int a = digits.charAt(0)-'0';
+        String s = keypad[a];
+        for(int i =0;i<s.length();i++)
+        {
+            char ch = s.charAt(i);
+            generate(digits.substring(1),result,keypad,ans+ch);
         }
     }}
+    
+
+    
+        
