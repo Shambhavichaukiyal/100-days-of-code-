@@ -1,52 +1,53 @@
-
 class MyQueue {
-    private Stack<Integer> stack1;
-    private Stack<Integer> stack2;
-
-    // Constructor to initialize the stacks
+private Stack<Integer> sta1;
+    private Stack<Integer> sta2;
     public MyQueue() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
+        sta1= new Stack<>();
+        sta2=new Stack<>();
     }
-
-    // Pushes element x to the back of the queue
-    public void push(int x) {
-        stack1.push(x);
+    
+    public void push(int x)
+    {
+        sta1.push(x);
     }
-
-    // Removes the element from the front of the queue and returns it
-    public int pop() {
-        if (stack2.isEmpty()) {
-            transferStack1ToStack2();
+    
+    public int pop() 
+    {
+        if(sta2.empty())
+        {
+            transfer();
         }
-        if (stack2.isEmpty()) {
-            return -1; // Return -1 if the queue is empty
+        if(sta2.empty())
+        {
+            return -1;
         }
-        return stack2.pop();
-    }
+        return sta2.pop();
 
-    // Returns the element at the front of the queue
+    }
+    
     public int peek() {
-        if (stack2.isEmpty()) {
-            transferStack1ToStack2();
+        
+        if(sta2.empty())
+        {
+            transfer();
         }
-        if (stack2.isEmpty()) {
-            return -1; // Return -1 if the queue is empty
+        if(sta2.empty())
+        {
+            return -1;
         }
-        return stack2.peek();
-    }
+        return sta2.peek();
 
-    // Returns true if the queue is empty, false otherwise
-    public boolean empty() {
-        return stack1.isEmpty() && stack2.isEmpty();
     }
-
-    // Helper method to transfer elements from stack1 to stack2
-    private void transferStack1ToStack2() {
-        while (!stack1.isEmpty()) {
-            stack2.push(stack1.pop());
+    
+    public boolean empty()
+    {
+        return (sta1.empty() && sta2.empty());
+    }
+    private void transfer() {
+        while (!sta1.isEmpty()) {
+            sta2.push(sta1.pop());
         }
-    }}
+}}
 
 /**
  * Your MyQueue object will be instantiated and called as such:
