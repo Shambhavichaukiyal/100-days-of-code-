@@ -1,29 +1,25 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        generate(result,candidates,target,0,new ArrayList<>());
-            return result;
-        
+        List<List<Integer>> ans = new ArrayList<>();
+        Sum(0,candidates,ans,new ArrayList<>(),target);
+        return ans;
     }
-    public static void generate(List<List<Integer>> result, int candidates[],int target,int  start,List<Integer> current)
+    public static void Sum(int index,int candidates[],List<List<Integer>> ans,List<Integer> ds,int target)
     {
-        if(target<0)
+        if(index==candidates.length)
         {
-            return;
-        }
-        else if(target==0)
-        {
-            result.add(new ArrayList<>(current));
-            
-        }
-        else
-        {
-            for(int i=start;i<candidates.length;i++)
+            if(target==0)
             {
-                current.add(candidates[i]);
-                generate(result,candidates,target-candidates[i],i,current);
-                current.remove(current.size()-1);
+               ans.add(new ArrayList<>(ds));
             }
+            return ;
         }
+        if(candidates[index]<=target)
+        {
+            ds.add(candidates[index]);
+            Sum(index,candidates,ans,ds,target-candidates[index]);
+            ds.remove(ds.size()-1);
+        }
+       Sum(index+1,candidates,ans,ds,target) ;
     }
 }
