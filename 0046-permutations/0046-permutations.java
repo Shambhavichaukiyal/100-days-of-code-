@@ -1,29 +1,32 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        permute(nums, 0, nums.length - 1, result);
-        return result;
+         List<List<Integer>> ans = new ArrayList<>();
+        generatePermutations(ans, nums, 0);
+        return ans;
     }
-
-    public void permute(int[] nums, int l, int r, List<List<Integer>> result) {
-        if (l == r) {
-            List<Integer> permutation = new ArrayList<>();
-            for (int num : nums) {
-                permutation.add(num);
+    
+    private void generatePermutations(List<List<Integer>> ans, int[] nums, int index) {
+        if (index == nums.length) {
+            List<Integer> ds = new ArrayList<>();
+            for (int i = 0; i < nums.length; i++) {
+                ds.add(nums[i]);
             }
-            result.add(permutation);
-        } else {
-            for (int i = l; i <= r; i++) {
-                swap(nums, l, i);
-                permute(nums, l + 1, r, result);
-                swap(nums, l, i); // backtrack to the original array
-            }
+            ans.add(ds);
+            return;
+        }
+        
+        for (int i = index; i < nums.length; i++) {
+            swap(i, index, nums);
+            generatePermutations(ans, nums, index + 1);
+            swap(i, index, nums); // backtrack
         }
     }
-
-    public void swap(int[] nums, int l, int r) {
-        int temp = nums[l];
-        nums[l] = nums[r];
-        nums[r] = temp;
+    
+    private void swap(int a, int b, int[] nums) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
     }
+
+   
 }
