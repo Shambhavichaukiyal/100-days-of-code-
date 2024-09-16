@@ -18,20 +18,28 @@
 //root.right
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> inorderlist= new ArrayList<>();
-      
-      inorder(inorderlist,root);
-        return inorderlist;
-    }
-    public static void inorder(  List<Integer> inorderlist,TreeNode root)
-    {
-          if(root==null)
+      //  LVR(V-value)
+       List<Integer> result= new ArrayList<>();
+        TreeNode curr=root;
+        while(curr!=null)
         {
-            return ;
+            if(curr.left==null)
+            {
+                result.add(curr.val);
+                curr=curr.right;
+            }
+            else
+            {
+                TreeNode prev=curr.left;
+                while(prev.right!=null)
+                {
+                    prev=prev.right;
+                }
+                prev.right=curr;
+                TreeNode temp=curr;
+                curr=curr.left;
+                    temp.left=null;
+            }
         }
-        inorder(inorderlist,root.left);
-        inorderlist.add(root.val);
-        inorder(inorderlist,root.right);
-        
-    } 
-}
+        return result;
+    }}
