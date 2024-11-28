@@ -16,7 +16,7 @@ class Solution {
             }
             else
             {
-                wrap.get(wrap.size()-1)[1]=Math.max(wrap.get(wrap.size()-1)[1],intervals[i][1]);
+                wrap.get(wrap.size()-1)[1]= Math.max(wrap.get(wrap.size()-1)[1],intervals[i][1]);
             }
         }
         return wrap.toArray(new int[wrap.size()][]);
