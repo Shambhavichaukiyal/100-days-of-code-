@@ -12,33 +12,33 @@ class Solution {
         }
         if(index==-1)
         {
-            rev(nums,0,n-1);
-        }
+            rev(0,n-1,nums);
+}
         else
         {
-            for (int j = n - 1; j > index; j--) {
-                if (nums[j] > nums[index]) {
-                    
-                    int temp = nums[index];
-                    nums[index] = nums[j];
-                    nums[j] = temp;
+            for(int i=n-1;i>=0;i--)
+            {
+                if(nums[i]>nums[index])
+                {
+                    int temp=nums[i];
+                    nums[i]=nums[index];
+                    nums[index]=temp;
                     break;
                 }
             }
-            rev(nums, index + 1, n - 1);
+            rev(index+1,n-1,nums);
         }
         
     }
-public void rev(int nums[],int l,int r)
-{
-    while(l<=r)
+    public static void rev(int l , int r,int nums[])
     {
-        int temp=nums[l];
-        nums[l]=nums[r];
-        nums[r]=temp;
-        l++;
-        r--;
+        while(l<r)
+        {
+            int temp=nums[l];
+            nums[l]=nums[r];
+            nums[r]=temp;
+            l++;
+            r--;
+        }
     }
-}
-   
 }
