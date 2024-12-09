@@ -9,12 +9,13 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null)
+    public boolean isPalindrome(ListNode head) 
+    {
+          if (head == null || head.next == null)
             return true;
 
-        ListNode middle = mid(head);
-        ListNode secondHalfReversed = reverse(middle.next);
+        ListNode middle = middle(head);
+        ListNode secondHalfReversed = reverse(middle);
         middle.next = null;
 
         while (head != null && secondHalfReversed != null) {
@@ -26,26 +27,43 @@ class Solution {
         return true;
     }
 
-    public ListNode mid(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
+        
+    
+    public ListNode middle(ListNode head)
+    {
+      ListNode slow=head;
+        ListNode fast= head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
         }
         return slow;
     }
-
-    public ListNode reverse(ListNode head) {
-        ListNode prev = null;
-        ListNode current = head;
-        ListNode next;
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+    public ListNode reverse(ListNode head)
+    {
+        if(head==null)
+        {
+            return head;
         }
-        return prev;
+        ListNode prev=null;
+        ListNode present = head;
+        ListNode next= present.next;
+        if(head==null)
+        {
+            return head;
+        }
+        while(present!=null)
+        {
+            present.next=prev;
+            prev=present;
+            present = next;
+            if(next!=null)
+            {
+                next=next.next;
+            }
+        }
+        head=prev;
+        return head;
     }
 }
