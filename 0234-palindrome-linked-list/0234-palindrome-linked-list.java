@@ -49,10 +49,7 @@ class Solution {
         ListNode prev=null;
         ListNode present = head;
         ListNode next= present.next;
-        if(head==null)
-        {
-            return head;
-        }
+        
         while(present!=null)
         {
             present.next=prev;
